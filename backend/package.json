@@ -1,0 +1,14 @@
+{
+  "name": "cookbook-backend",
+  "version": "1.0.0",
+  "description": "cookbook graphql backend",
+  "main": "index.js",
+  "author": "Petr Čaněk <canekpet@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "apollo-server": "^2.0.0",
+    "graphql": "^0.13.2",
+    "prisma-binding": "^2.1.1"
+  }
+}

@@ -1,0 +1,10 @@
+projects:
+  app:
+    schemaPath: ./backend/schema.graphql
+    extensions:
+      endpoints:
+        default: http://localhost:4000
+  prisma:
+    schemaPath: ./backend/generated/prisma.graphql
+    extensions:
+      prisma: cookbook-orm/prisma.yml
