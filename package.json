@@ -1,0 +1,16 @@
+{
+  "name": "cookbook-graphql",
+  "version": "1.0.0",
+  "description": "Pet project - cookbook for my personal use. Used as technology testing playground with real target and success criteria.",
+  "main": "index.js",
+  "repository": "git@github.com:CorwinCZ/cookbook-graphql.git",
+  "author": "Petr Čaněk <canekpet@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "orm:deploy": "cd cookbook-orm && prisma deploy"
+  },
+  "devDependencies": {
+    "prisma": "^1.12.0"
+  }
+}
