@@ -1,4 +1,23 @@
-type User {
+type Recepie {
   id: ID! @unique
   name: String!
+  materialsNeeded: [IngredienceGroup!]!
+  description: String
+  directions: String
+  preparationTime: Int
+  serves: Int
+}
+
+type IngredienceGroup {
+  id: ID! @unique
+  name: String!
+  ingredienceList: [Ingredience!]!
+}
+
+type Ingredience {
+  id: ID! @unique
+  name: String!
+  group: IngredienceGroup!
+  amount: Int
+  unit: String
 }
