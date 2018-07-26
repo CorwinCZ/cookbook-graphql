@@ -11,7 +11,7 @@ type Mutation {
 type Recepie {
   id: ID!
   name: String!
-  materialsNeeded: [IngredientGroup!]!
+  ingredientList: [Ingredient!]!
   description: String
   directions: String
   preparationTime: Int
@@ -24,19 +24,23 @@ input RecepieCreateInput {
   directions: String
   preparationTime: Int
   serves: Int
-  #materialsNeeded: IngredientGroupCreateManyInput
+  ingredientList: IngredientCreateManyInput
 }
 
 type Ingredient {
   id: ID!
   name: String!
-  group: IngredientGroup!
-  amount: Int
+  recepie: Recepie!
+  amount: Float
   unit: String
 }
 
-type IngredientGroup {
-  id: ID!
+input IngredientCreateInput {
   name: String!
-  ingredienceList: [Ingredient!]!
+  amount: Float
+  unit: String
+}
+
+input IngredientCreateManyInput {
+  create: [IngredientCreateInput!]
 }
