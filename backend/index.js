@@ -1,4 +1,4 @@
-const { ApolloServer, gql } = require('apollo-server');
+const { GraphQLServer } = require('graphql-yoga');
 const { Prisma } = require('prisma-binding');
 
 const resolvers = {
@@ -9,28 +9,8 @@ const resolvers = {
   }
 };
 
-const typeDefs = gql`
-  type Ingredient {
-    id: ID! @unique
-    name: String!
-    group: IngredientGroup!
-    amount: Int
-    unit: String
-  }
-
-  type IngredientGroup {
-    id: ID! @unique
-    name: String!
-    ingredienceList: [Ingredient!]!
-  }
-
-  type Query {
-    ingredients: [Ingredient!]!
-  }
-`;
-
-const server = new ApolloServer({
-  typeDefs: typeDefs,
+const server = new GraphQLServer({
+  typeDefs: './schema.graphql',
   resolvers,
   context: req => ({
     ...req,
@@ -40,7 +20,6 @@ const server = new ApolloServer({
     })
   })
 });
-
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+server.start(() =>
+  console.log(`🚀  Server ready at http://localhost:4000`)
+);

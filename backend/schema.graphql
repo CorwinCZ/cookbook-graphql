@@ -1,0 +1,17 @@
+type Ingredient {
+  id: ID! 
+  name: String!
+  group: IngredientGroup!
+  amount: Int
+  unit: String
+}
+
+type IngredientGroup {
+  id: ID!
+  name: String!
+  ingredienceList: [Ingredient!]!
+}
+
+type Query {
+  ingredients: [Ingredient!]!
+}

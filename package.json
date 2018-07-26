@@ -8,7 +8,8 @@
   "private": false,
   "scripts": {
     "orm:deploy": "cd cookbook-orm && prisma deploy && cd .. && yarn orm:generate-schema",
-    "orm:generate-schema": "graphql get-schema -p prisma"
+    "orm:generate-schema": "graphql get-schema -p prisma",
+    "backend:start": "cd backend && node index.js"
   },
   "devDependencies": {
     "graphql-cli": "^2.16.4",
