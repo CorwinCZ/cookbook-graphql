@@ -1,11 +1,11 @@
 # source: https://eu1.prisma.sh/petr-canek-398ab8/cookbook-orm/dev
-# timestamp: Tue Jul 24 2018 16:27:16 GMT+0200 (CEST)
+# timestamp: Thu Jul 26 2018 13:52:05 GMT+0200 (CEST)
 
-type AggregateIngredience {
+type AggregateIngredient {
   count: Int!
 }
 
-type AggregateIngredienceGroup {
+type AggregateIngredientGroup {
   count: Int!
 }
 
@@ -18,96 +18,96 @@ type BatchPayload {
   count: Long!
 }
 
-type Ingredience implements Node {
+type Ingredient implements Node {
   id: ID!
   name: String!
-  group(where: IngredienceGroupWhereInput): IngredienceGroup!
-  amount: Int
+  group(where: IngredientGroupWhereInput): IngredientGroup!
+  amount: Float
   unit: String
 }
 
 """A connection to a list of items."""
-type IngredienceConnection {
+type IngredientConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [IngredienceEdge]!
-  aggregate: AggregateIngredience!
+  edges: [IngredientEdge]!
+  aggregate: AggregateIngredient!
 }
 
-input IngredienceCreateInput {
+input IngredientCreateInput {
   name: String!
-  amount: Int
+  amount: Float
   unit: String
-  group: IngredienceGroupCreateOneWithoutIngredienceListInput!
+  group: IngredientGroupCreateOneWithoutIngredienceListInput!
 }
 
-input IngredienceCreateManyWithoutGroupInput {
-  create: [IngredienceCreateWithoutGroupInput!]
-  connect: [IngredienceWhereUniqueInput!]
+input IngredientCreateManyWithoutGroupInput {
+  create: [IngredientCreateWithoutGroupInput!]
+  connect: [IngredientWhereUniqueInput!]
 }
 
-input IngredienceCreateWithoutGroupInput {
+input IngredientCreateWithoutGroupInput {
   name: String!
-  amount: Int
+  amount: Float
   unit: String
 }
 
 """An edge in a connection."""
-type IngredienceEdge {
+type IngredientEdge {
   """The item at the end of the edge."""
-  node: Ingredience!
+  node: Ingredient!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-type IngredienceGroup implements Node {
+type IngredientGroup implements Node {
   id: ID!
   name: String!
-  ingredienceList(where: IngredienceWhereInput, orderBy: IngredienceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Ingredience!]
+  ingredienceList(where: IngredientWhereInput, orderBy: IngredientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Ingredient!]
 }
 
 """A connection to a list of items."""
-type IngredienceGroupConnection {
+type IngredientGroupConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [IngredienceGroupEdge]!
-  aggregate: AggregateIngredienceGroup!
+  edges: [IngredientGroupEdge]!
+  aggregate: AggregateIngredientGroup!
 }
 
-input IngredienceGroupCreateInput {
+input IngredientGroupCreateInput {
   name: String!
-  ingredienceList: IngredienceCreateManyWithoutGroupInput
+  ingredienceList: IngredientCreateManyWithoutGroupInput
 }
 
-input IngredienceGroupCreateManyInput {
-  create: [IngredienceGroupCreateInput!]
-  connect: [IngredienceGroupWhereUniqueInput!]
+input IngredientGroupCreateManyInput {
+  create: [IngredientGroupCreateInput!]
+  connect: [IngredientGroupWhereUniqueInput!]
 }
 
-input IngredienceGroupCreateOneWithoutIngredienceListInput {
-  create: IngredienceGroupCreateWithoutIngredienceListInput
-  connect: IngredienceGroupWhereUniqueInput
+input IngredientGroupCreateOneWithoutIngredienceListInput {
+  create: IngredientGroupCreateWithoutIngredienceListInput
+  connect: IngredientGroupWhereUniqueInput
 }
 
-input IngredienceGroupCreateWithoutIngredienceListInput {
+input IngredientGroupCreateWithoutIngredienceListInput {
   name: String!
 }
 
 """An edge in a connection."""
-type IngredienceGroupEdge {
+type IngredientGroupEdge {
   """The item at the end of the edge."""
-  node: IngredienceGroup!
+  node: IngredientGroup!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum IngredienceGroupOrderByInput {
+enum IngredientGroupOrderByInput {
   id_ASC
   id_DESC
   name_ASC
@@ -118,27 +118,27 @@ enum IngredienceGroupOrderByInput {
   createdAt_DESC
 }
 
-type IngredienceGroupPreviousValues {
+type IngredientGroupPreviousValues {
   id: ID!
   name: String!
 }
 
-type IngredienceGroupSubscriptionPayload {
+type IngredientGroupSubscriptionPayload {
   mutation: MutationType!
-  node: IngredienceGroup
+  node: IngredientGroup
   updatedFields: [String!]
-  previousValues: IngredienceGroupPreviousValues
+  previousValues: IngredientGroupPreviousValues
 }
 
-input IngredienceGroupSubscriptionWhereInput {
+input IngredientGroupSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [IngredienceGroupSubscriptionWhereInput!]
+  AND: [IngredientGroupSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [IngredienceGroupSubscriptionWhereInput!]
+  OR: [IngredientGroupSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [IngredienceGroupSubscriptionWhereInput!]
+  NOT: [IngredientGroupSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -159,65 +159,65 @@ input IngredienceGroupSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: IngredienceGroupWhereInput
+  node: IngredientGroupWhereInput
 }
 
-input IngredienceGroupUpdateDataInput {
+input IngredientGroupUpdateDataInput {
   name: String
-  ingredienceList: IngredienceUpdateManyWithoutGroupInput
+  ingredienceList: IngredientUpdateManyWithoutGroupInput
 }
 
-input IngredienceGroupUpdateInput {
+input IngredientGroupUpdateInput {
   name: String
-  ingredienceList: IngredienceUpdateManyWithoutGroupInput
+  ingredienceList: IngredientUpdateManyWithoutGroupInput
 }
 
-input IngredienceGroupUpdateManyInput {
-  create: [IngredienceGroupCreateInput!]
-  connect: [IngredienceGroupWhereUniqueInput!]
-  disconnect: [IngredienceGroupWhereUniqueInput!]
-  delete: [IngredienceGroupWhereUniqueInput!]
-  update: [IngredienceGroupUpdateWithWhereUniqueNestedInput!]
-  upsert: [IngredienceGroupUpsertWithWhereUniqueNestedInput!]
+input IngredientGroupUpdateManyInput {
+  create: [IngredientGroupCreateInput!]
+  connect: [IngredientGroupWhereUniqueInput!]
+  disconnect: [IngredientGroupWhereUniqueInput!]
+  delete: [IngredientGroupWhereUniqueInput!]
+  update: [IngredientGroupUpdateWithWhereUniqueNestedInput!]
+  upsert: [IngredientGroupUpsertWithWhereUniqueNestedInput!]
 }
 
-input IngredienceGroupUpdateOneWithoutIngredienceListInput {
-  create: IngredienceGroupCreateWithoutIngredienceListInput
-  connect: IngredienceGroupWhereUniqueInput
+input IngredientGroupUpdateOneWithoutIngredienceListInput {
+  create: IngredientGroupCreateWithoutIngredienceListInput
+  connect: IngredientGroupWhereUniqueInput
   delete: Boolean
-  update: IngredienceGroupUpdateWithoutIngredienceListDataInput
-  upsert: IngredienceGroupUpsertWithoutIngredienceListInput
+  update: IngredientGroupUpdateWithoutIngredienceListDataInput
+  upsert: IngredientGroupUpsertWithoutIngredienceListInput
 }
 
-input IngredienceGroupUpdateWithoutIngredienceListDataInput {
+input IngredientGroupUpdateWithoutIngredienceListDataInput {
   name: String
 }
 
-input IngredienceGroupUpdateWithWhereUniqueNestedInput {
-  where: IngredienceGroupWhereUniqueInput!
-  data: IngredienceGroupUpdateDataInput!
+input IngredientGroupUpdateWithWhereUniqueNestedInput {
+  where: IngredientGroupWhereUniqueInput!
+  data: IngredientGroupUpdateDataInput!
 }
 
-input IngredienceGroupUpsertWithoutIngredienceListInput {
-  update: IngredienceGroupUpdateWithoutIngredienceListDataInput!
-  create: IngredienceGroupCreateWithoutIngredienceListInput!
+input IngredientGroupUpsertWithoutIngredienceListInput {
+  update: IngredientGroupUpdateWithoutIngredienceListDataInput!
+  create: IngredientGroupCreateWithoutIngredienceListInput!
 }
 
-input IngredienceGroupUpsertWithWhereUniqueNestedInput {
-  where: IngredienceGroupWhereUniqueInput!
-  update: IngredienceGroupUpdateDataInput!
-  create: IngredienceGroupCreateInput!
+input IngredientGroupUpsertWithWhereUniqueNestedInput {
+  where: IngredientGroupWhereUniqueInput!
+  update: IngredientGroupUpdateDataInput!
+  create: IngredientGroupCreateInput!
 }
 
-input IngredienceGroupWhereInput {
+input IngredientGroupWhereInput {
   """Logical AND on all given filters."""
-  AND: [IngredienceGroupWhereInput!]
+  AND: [IngredientGroupWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [IngredienceGroupWhereInput!]
+  OR: [IngredientGroupWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [IngredienceGroupWhereInput!]
+  NOT: [IngredientGroupWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -298,19 +298,19 @@ input IngredienceGroupWhereInput {
 
   """All values not ending with the given string."""
   name_not_ends_with: String
-  ingredienceList_every: IngredienceWhereInput
-  ingredienceList_some: IngredienceWhereInput
-  ingredienceList_none: IngredienceWhereInput
-  _MagicalBackRelation_IngredienceGroupToRecepie_every: RecepieWhereInput
-  _MagicalBackRelation_IngredienceGroupToRecepie_some: RecepieWhereInput
-  _MagicalBackRelation_IngredienceGroupToRecepie_none: RecepieWhereInput
+  ingredienceList_every: IngredientWhereInput
+  ingredienceList_some: IngredientWhereInput
+  ingredienceList_none: IngredientWhereInput
+  _MagicalBackRelation_IngredientGroupToRecepie_every: RecepieWhereInput
+  _MagicalBackRelation_IngredientGroupToRecepie_some: RecepieWhereInput
+  _MagicalBackRelation_IngredientGroupToRecepie_none: RecepieWhereInput
 }
 
-input IngredienceGroupWhereUniqueInput {
+input IngredientGroupWhereUniqueInput {
   id: ID
 }
 
-enum IngredienceOrderByInput {
+enum IngredientOrderByInput {
   id_ASC
   id_DESC
   name_ASC
@@ -325,29 +325,29 @@ enum IngredienceOrderByInput {
   createdAt_DESC
 }
 
-type IngrediencePreviousValues {
+type IngredientPreviousValues {
   id: ID!
   name: String!
-  amount: Int
+  amount: Float
   unit: String
 }
 
-type IngredienceSubscriptionPayload {
+type IngredientSubscriptionPayload {
   mutation: MutationType!
-  node: Ingredience
+  node: Ingredient
   updatedFields: [String!]
-  previousValues: IngrediencePreviousValues
+  previousValues: IngredientPreviousValues
 }
 
-input IngredienceSubscriptionWhereInput {
+input IngredientSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [IngredienceSubscriptionWhereInput!]
+  AND: [IngredientSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [IngredienceSubscriptionWhereInput!]
+  OR: [IngredientSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [IngredienceSubscriptionWhereInput!]
+  NOT: [IngredientSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -368,51 +368,51 @@ input IngredienceSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: IngredienceWhereInput
+  node: IngredientWhereInput
 }
 
-input IngredienceUpdateInput {
+input IngredientUpdateInput {
   name: String
-  amount: Int
+  amount: Float
   unit: String
-  group: IngredienceGroupUpdateOneWithoutIngredienceListInput
+  group: IngredientGroupUpdateOneWithoutIngredienceListInput
 }
 
-input IngredienceUpdateManyWithoutGroupInput {
-  create: [IngredienceCreateWithoutGroupInput!]
-  connect: [IngredienceWhereUniqueInput!]
-  disconnect: [IngredienceWhereUniqueInput!]
-  delete: [IngredienceWhereUniqueInput!]
-  update: [IngredienceUpdateWithWhereUniqueWithoutGroupInput!]
-  upsert: [IngredienceUpsertWithWhereUniqueWithoutGroupInput!]
+input IngredientUpdateManyWithoutGroupInput {
+  create: [IngredientCreateWithoutGroupInput!]
+  connect: [IngredientWhereUniqueInput!]
+  disconnect: [IngredientWhereUniqueInput!]
+  delete: [IngredientWhereUniqueInput!]
+  update: [IngredientUpdateWithWhereUniqueWithoutGroupInput!]
+  upsert: [IngredientUpsertWithWhereUniqueWithoutGroupInput!]
 }
 
-input IngredienceUpdateWithoutGroupDataInput {
+input IngredientUpdateWithoutGroupDataInput {
   name: String
-  amount: Int
+  amount: Float
   unit: String
 }
 
-input IngredienceUpdateWithWhereUniqueWithoutGroupInput {
-  where: IngredienceWhereUniqueInput!
-  data: IngredienceUpdateWithoutGroupDataInput!
+input IngredientUpdateWithWhereUniqueWithoutGroupInput {
+  where: IngredientWhereUniqueInput!
+  data: IngredientUpdateWithoutGroupDataInput!
 }
 
-input IngredienceUpsertWithWhereUniqueWithoutGroupInput {
-  where: IngredienceWhereUniqueInput!
-  update: IngredienceUpdateWithoutGroupDataInput!
-  create: IngredienceCreateWithoutGroupInput!
+input IngredientUpsertWithWhereUniqueWithoutGroupInput {
+  where: IngredientWhereUniqueInput!
+  update: IngredientUpdateWithoutGroupDataInput!
+  create: IngredientCreateWithoutGroupInput!
 }
 
-input IngredienceWhereInput {
+input IngredientWhereInput {
   """Logical AND on all given filters."""
-  AND: [IngredienceWhereInput!]
+  AND: [IngredientWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [IngredienceWhereInput!]
+  OR: [IngredientWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [IngredienceWhereInput!]
+  NOT: [IngredientWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -493,28 +493,28 @@ input IngredienceWhereInput {
 
   """All values not ending with the given string."""
   name_not_ends_with: String
-  amount: Int
+  amount: Float
 
   """All values that are not equal to given value."""
-  amount_not: Int
+  amount_not: Float
 
   """All values that are contained in given list."""
-  amount_in: [Int!]
+  amount_in: [Float!]
 
   """All values that are not contained in given list."""
-  amount_not_in: [Int!]
+  amount_not_in: [Float!]
 
   """All values less than the given value."""
-  amount_lt: Int
+  amount_lt: Float
 
   """All values less than or equal the given value."""
-  amount_lte: Int
+  amount_lte: Float
 
   """All values greater than the given value."""
-  amount_gt: Int
+  amount_gt: Float
 
   """All values greater than or equal the given value."""
-  amount_gte: Int
+  amount_gte: Float
   unit: String
 
   """All values that are not equal to given value."""
@@ -555,10 +555,10 @@ input IngredienceWhereInput {
 
   """All values not ending with the given string."""
   unit_not_ends_with: String
-  group: IngredienceGroupWhereInput
+  group: IngredientGroupWhereInput
 }
 
-input IngredienceWhereUniqueInput {
+input IngredientWhereUniqueInput {
   id: ID
 }
 
@@ -570,23 +570,23 @@ scalar Long
 
 type Mutation {
   createRecepie(data: RecepieCreateInput!): Recepie!
-  createIngredience(data: IngredienceCreateInput!): Ingredience!
-  createIngredienceGroup(data: IngredienceGroupCreateInput!): IngredienceGroup!
+  createIngredient(data: IngredientCreateInput!): Ingredient!
+  createIngredientGroup(data: IngredientGroupCreateInput!): IngredientGroup!
   updateRecepie(data: RecepieUpdateInput!, where: RecepieWhereUniqueInput!): Recepie
-  updateIngredience(data: IngredienceUpdateInput!, where: IngredienceWhereUniqueInput!): Ingredience
-  updateIngredienceGroup(data: IngredienceGroupUpdateInput!, where: IngredienceGroupWhereUniqueInput!): IngredienceGroup
+  updateIngredient(data: IngredientUpdateInput!, where: IngredientWhereUniqueInput!): Ingredient
+  updateIngredientGroup(data: IngredientGroupUpdateInput!, where: IngredientGroupWhereUniqueInput!): IngredientGroup
   deleteRecepie(where: RecepieWhereUniqueInput!): Recepie
-  deleteIngredience(where: IngredienceWhereUniqueInput!): Ingredience
-  deleteIngredienceGroup(where: IngredienceGroupWhereUniqueInput!): IngredienceGroup
+  deleteIngredient(where: IngredientWhereUniqueInput!): Ingredient
+  deleteIngredientGroup(where: IngredientGroupWhereUniqueInput!): IngredientGroup
   upsertRecepie(where: RecepieWhereUniqueInput!, create: RecepieCreateInput!, update: RecepieUpdateInput!): Recepie!
-  upsertIngredience(where: IngredienceWhereUniqueInput!, create: IngredienceCreateInput!, update: IngredienceUpdateInput!): Ingredience!
-  upsertIngredienceGroup(where: IngredienceGroupWhereUniqueInput!, create: IngredienceGroupCreateInput!, update: IngredienceGroupUpdateInput!): IngredienceGroup!
+  upsertIngredient(where: IngredientWhereUniqueInput!, create: IngredientCreateInput!, update: IngredientUpdateInput!): Ingredient!
+  upsertIngredientGroup(where: IngredientGroupWhereUniqueInput!, create: IngredientGroupCreateInput!, update: IngredientGroupUpdateInput!): IngredientGroup!
   updateManyRecepies(data: RecepieUpdateInput!, where: RecepieWhereInput): BatchPayload!
-  updateManyIngrediences(data: IngredienceUpdateInput!, where: IngredienceWhereInput): BatchPayload!
-  updateManyIngredienceGroups(data: IngredienceGroupUpdateInput!, where: IngredienceGroupWhereInput): BatchPayload!
+  updateManyIngredients(data: IngredientUpdateInput!, where: IngredientWhereInput): BatchPayload!
+  updateManyIngredientGroups(data: IngredientGroupUpdateInput!, where: IngredientGroupWhereInput): BatchPayload!
   deleteManyRecepies(where: RecepieWhereInput): BatchPayload!
-  deleteManyIngrediences(where: IngredienceWhereInput): BatchPayload!
-  deleteManyIngredienceGroups(where: IngredienceGroupWhereInput): BatchPayload!
+  deleteManyIngredients(where: IngredientWhereInput): BatchPayload!
+  deleteManyIngredientGroups(where: IngredientGroupWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -618,14 +618,14 @@ type PageInfo {
 
 type Query {
   recepies(where: RecepieWhereInput, orderBy: RecepieOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Recepie]!
-  ingrediences(where: IngredienceWhereInput, orderBy: IngredienceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Ingredience]!
-  ingredienceGroups(where: IngredienceGroupWhereInput, orderBy: IngredienceGroupOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [IngredienceGroup]!
+  ingredients(where: IngredientWhereInput, orderBy: IngredientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Ingredient]!
+  ingredientGroups(where: IngredientGroupWhereInput, orderBy: IngredientGroupOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [IngredientGroup]!
   recepie(where: RecepieWhereUniqueInput!): Recepie
-  ingredience(where: IngredienceWhereUniqueInput!): Ingredience
-  ingredienceGroup(where: IngredienceGroupWhereUniqueInput!): IngredienceGroup
+  ingredient(where: IngredientWhereUniqueInput!): Ingredient
+  ingredientGroup(where: IngredientGroupWhereUniqueInput!): IngredientGroup
   recepiesConnection(where: RecepieWhereInput, orderBy: RecepieOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RecepieConnection!
-  ingrediencesConnection(where: IngredienceWhereInput, orderBy: IngredienceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): IngredienceConnection!
-  ingredienceGroupsConnection(where: IngredienceGroupWhereInput, orderBy: IngredienceGroupOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): IngredienceGroupConnection!
+  ingredientsConnection(where: IngredientWhereInput, orderBy: IngredientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): IngredientConnection!
+  ingredientGroupsConnection(where: IngredientGroupWhereInput, orderBy: IngredientGroupOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): IngredientGroupConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -637,7 +637,7 @@ type Query {
 type Recepie implements Node {
   id: ID!
   name: String!
-  materialsNeeded(where: IngredienceGroupWhereInput, orderBy: IngredienceGroupOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [IngredienceGroup!]
+  materialsNeeded(where: IngredientGroupWhereInput, orderBy: IngredientGroupOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [IngredientGroup!]
   description: String
   directions: String
   preparationTime: Int
@@ -660,7 +660,7 @@ input RecepieCreateInput {
   directions: String
   preparationTime: Int
   serves: Int
-  materialsNeeded: IngredienceGroupCreateManyInput
+  materialsNeeded: IngredientGroupCreateManyInput
 }
 
 """An edge in a connection."""
@@ -745,7 +745,7 @@ input RecepieUpdateInput {
   directions: String
   preparationTime: Int
   serves: Int
-  materialsNeeded: IngredienceGroupUpdateManyInput
+  materialsNeeded: IngredientGroupUpdateManyInput
 }
 
 input RecepieWhereInput {
@@ -961,9 +961,9 @@ input RecepieWhereInput {
 
   """All values greater than or equal the given value."""
   serves_gte: Int
-  materialsNeeded_every: IngredienceGroupWhereInput
-  materialsNeeded_some: IngredienceGroupWhereInput
-  materialsNeeded_none: IngredienceGroupWhereInput
+  materialsNeeded_every: IngredientGroupWhereInput
+  materialsNeeded_some: IngredientGroupWhereInput
+  materialsNeeded_none: IngredientGroupWhereInput
 }
 
 input RecepieWhereUniqueInput {
@@ -972,6 +972,6 @@ input RecepieWhereUniqueInput {
 
 type Subscription {
   recepie(where: RecepieSubscriptionWhereInput): RecepieSubscriptionPayload
-  ingredience(where: IngredienceSubscriptionWhereInput): IngredienceSubscriptionPayload
-  ingredienceGroup(where: IngredienceGroupSubscriptionWhereInput): IngredienceGroupSubscriptionPayload
+  ingredient(where: IngredientSubscriptionWhereInput): IngredientSubscriptionPayload
+  ingredientGroup(where: IngredientGroupSubscriptionWhereInput): IngredientGroupSubscriptionPayload
 }

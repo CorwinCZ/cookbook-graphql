@@ -1,5 +1,21 @@
+type Query {
+  info: String!
+  ingredients: [Ingredient!]!
+  recepies: [Recepie!]!
+}
+
+type Recepie {
+  id: ID!
+  name: String!
+  materialsNeeded: [IngredientGroup!]!
+  description: String
+  directions: String
+  preparationTime: Int
+  serves: Int
+}
+
 type Ingredient {
-  id: ID! 
+  id: ID!
   name: String!
   group: IngredientGroup!
   amount: Int
@@ -10,8 +26,4 @@ type IngredientGroup {
   id: ID!
   name: String!
   ingredienceList: [Ingredient!]!
-}
-
-type Query {
-  ingredients: [Ingredient!]!
 }
