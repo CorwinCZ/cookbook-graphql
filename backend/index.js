@@ -11,6 +11,11 @@ const resolvers = {
       return context.db.query.recepies({}, info);
     },
   },
+  Mutation: {
+    createRecepie: (root, args, context) => {
+      return context.db.mutation.createRecepie(args);
+    },
+  },
 };
 
 const server = new GraphQLServer({

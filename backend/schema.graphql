@@ -4,6 +4,10 @@ type Query {
   recepies: [Recepie!]!
 }
 
+type Mutation {
+  createRecepie(data: RecepieCreateInput!): Recepie!
+}
+
 type Recepie {
   id: ID!
   name: String!
@@ -12,6 +16,15 @@ type Recepie {
   directions: String
   preparationTime: Int
   serves: Int
+}
+
+input RecepieCreateInput {
+  name: String!
+  description: String
+  directions: String
+  preparationTime: Int
+  serves: Int
+  #materialsNeeded: IngredientGroupCreateManyInput
 }
 
 type Ingredient {
