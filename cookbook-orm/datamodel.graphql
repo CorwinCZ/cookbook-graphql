@@ -1,23 +1,17 @@
 type Recepie {
   id: ID! @unique
   name: String!
-  materialsNeeded: [IngredientGroup!]!
+  ingredientList: [Ingredient!]!
   description: String
   directions: String
   preparationTime: Int
   serves: Int
 }
 
-type IngredientGroup {
-  id: ID! @unique
-  name: String!
-  ingredienceList: [Ingredient!]!
-}
-
 type Ingredient {
   id: ID! @unique
+  recepie: Recepie!
   name: String!
-  group: IngredientGroup!
   amount: Float
   unit: String
 }
